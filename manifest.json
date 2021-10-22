@@ -1,0 +1,33 @@
+{
+  "name": "Tadoba Safari Booking",
+  "description": "Helps you save information for automates prefilling of information while booking Safari",
+  "version": "1.0",
+  "manifest_version": 3,
+  "icons": {
+    "16": "/app/assets/images/logo_16.png",
+    "32": "/app/assets/images/logo_32.png",
+    "48": "/app/assets/images/logo_48.png",
+    "128": "/app/assets/images/logo_128.png"
+  },
+  "action": {
+    "default_popup": "/app/views/popup.html",
+    "default_icon": {
+      "16": "/app/assets/images/logo_16.png",
+      "32": "/app/assets/images/logo_32.png"
+    }
+  },
+  "options_page": "/app/views/options.html",
+  "background": {
+    "service_worker": "/app/service_worker.js"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://booking.mytadoba.org/*"],
+      "css": [],
+      "js": ["/app/assets/js/moment.min.js", "/app/content-script.js"]
+    }
+  ]
+}
