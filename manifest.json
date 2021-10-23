@@ -1,7 +1,7 @@
 {
   "name": "Tadoba Safari Booking",
   "description": "Helps you save information for automates prefilling of information while booking Safari",
-  "version": "1.0",
+  "version": "0.0.1",
   "manifest_version": 3,
   "icons": {
     "16": "/app/assets/images/logo_16.png",
