@@ -20,7 +20,8 @@ module.exports = (_, argv) => {
 
     entry: {
       'options': `${SRC_PATH}/scss/options.scss`,
-      options: `${SRC_PATH}/js/options`
+      options: `${SRC_PATH}/js/options`,
+      popup: `${SRC_PATH}/js/popup`
     },
 
     output: {
