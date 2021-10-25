@@ -1,7 +1,35 @@
-a {
-  display: flex;
+@import '~reset-css/sass/reset';
+
+body {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: 20px;
 }
 
-div {
-  text-decoration-style: initial;
+h1 {
+  font-size: 48px;
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+select {
+  padding: 5px;
+  width: 150px;
+}
+
+input[type='text'] {
+  padding: 5px;
+  width: 150px;
+}
+
+.hidden {
+  display: none;
 }
