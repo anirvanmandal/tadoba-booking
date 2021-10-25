@@ -27,7 +27,7 @@
     {
       "matches": ["https://booking.mytadoba.org/*"],
       "css": [],
-      "js": ["/app/assets/js/moment.min.js", "/app/content-script.js"]
+      "js": ["/app/content-script.min.js"]
     }
   ]
 }
