@@ -1,0 +1,42 @@
+{
+  "extends": ["stylelint-prettier/recommended"],
+  "plugins": [
+    "stylelint-declaration-strict-value",
+    "stylelint-order",
+    "stylelint-scss"
+  ],
+  "rules": {
+    "block-no-empty": true,
+    "color-hex-length": "short",
+    "color-named": "never",
+    "color-no-invalid-hex": true,
+    "declaration-bang-space-after": "never",
+    "declaration-bang-space-before": "always",
+    "declaration-block-no-duplicate-properties": [
+      true,
+      {
+        "ignore": ["consecutive-duplicates"]
+      }
+    ],
+    "function-url-quotes": "always",
+    "no-duplicate-selectors": true,
+    "order/properties-alphabetical-order": true,
+    "scale-unlimited/declaration-strict-value": [
+      ["/color/", "background", "fill", "stroke"],
+      {
+        "disableFix": true,
+        "ignoreKeywords": ["currentColor", "inherit", "transparent", "none"],
+      }
+    ],
+    "scss/at-import-no-partial-leading-underscore": true,
+    "selector-pseudo-element-colon-notation": "double",
+    "shorthand-property-no-redundant-values": true,
+    "property-no-vendor-prefix": true,
+    "selector-no-vendor-prefix": true,
+    "media-feature-name-no-vendor-prefix": true,
+    "at-rule-no-vendor-prefix": true,
+    "value-no-vendor-prefix": true,
+    "max-nesting-depth": 5,
+    "selector-max-id": false
+  }
+}
