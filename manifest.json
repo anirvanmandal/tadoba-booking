@@ -18,7 +18,7 @@
   },
   "options_page": "/app/views/options.html",
   "background": {
-    "service_worker": "/app/service_worker.js"
+    "service_worker": "/app/service-worker.min.js"
   },
   "permissions": [
     "storage"

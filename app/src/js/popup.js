@@ -1,5 +1,3 @@
-/* global chrome */
-
 const zoneSelect = document.getElementById('zone-selector')
 const shiftSelect = document.getElementById('shift-selector')
 

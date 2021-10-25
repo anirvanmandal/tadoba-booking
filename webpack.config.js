@@ -1,27 +1,27 @@
-const path = require('path');
-const { DefinePlugin } = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const path = require('path')
+const { DefinePlugin } = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts')
 
-const StylelintPlugin = require('stylelint-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
-const { name, version } = require('./package.json');
+const { name, version } = require('./package.json')
 
-const SRC_PATH = path.resolve('./app/src');
-const PUBLIC_PATH = path.resolve('./app');
+const SRC_PATH = path.resolve('./app/src')
+const PUBLIC_PATH = path.resolve('./app')
 
 module.exports = (_, argv) => {
   return {
-    mode: "production",
+    mode: 'production',
 
-    devtool: "source-map",
+    devtool: 'source-map',
     cache: true,
 
     entry: {
-      'options': `${SRC_PATH}/scss/options.scss`,
       options: `${SRC_PATH}/js/options`,
-      popup: `${SRC_PATH}/js/popup`
+      popup: `${SRC_PATH}/js/popup`,
+      'service-worker': `${SRC_PATH}/js/service-worker`
     },
 
     output: {
@@ -58,14 +58,14 @@ module.exports = (_, argv) => {
               loader: 'sass-loader',
               options: {
                 sassOptions: {
-                  outputStyle: "expanded"
+                  outputStyle: 'expanded'
                 }
               }
             }
           ]
         },
         {
-          test: /\.(woff|woff2|ttf|otf|png)([\?]?.*)$/,
+          test: /\.(woff|woff2|ttf|otf|png)([?]?.*)$/,
           loader: 'file-loader',
           options: {
             name: '[name].[ext]'
@@ -90,8 +90,8 @@ module.exports = (_, argv) => {
       }),
 
       new MiniCssExtractPlugin({
-        filename: "assets/css/[name].css",
-        chunkFilename: "assets/css/[id].css"
+        filename: 'assets/css/[name].css',
+        chunkFilename: 'assets/css/[id].css'
       }),
       new RemoveEmptyScriptsPlugin()
     ],
@@ -101,5 +101,5 @@ module.exports = (_, argv) => {
         waypoints: 'waypoints/lib/noframework.waypoints.js'
       }
     }
-  };
-};
+  }
+}

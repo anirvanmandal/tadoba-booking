@@ -1,5 +1,3 @@
-/* global chrome */
-
 let passengerInfo = {}
 let activitiesInfo = {}
 

@@ -1,3 +1,5 @@
+/* global chrome */
+
 const dateSelectorID = 'input_29_1';
 const zoneSelectorID = 'input_29_2';
 const shiftSelectorID = 'input_29_3';
@@ -198,14 +200,14 @@ const selectInsuranceRadio = () => {
   document.getElementById(insuranceRejectRadioID).click();
 }
 
-const checkActiviesCheckboxes = () => {
+const checkActivitiesCheckboxes = () => {
   document.getElementById(electronicUsageCheckboxID).click();
 }
 
 const setActivitiesInformation = () => {
   fetchActivitiesInformation();
   selectInsuranceRadio();
-  checkActiviesCheckboxes();
+  checkActivitiesCheckboxes();
 }
 
 const setReviewOrderInformation = () => {
