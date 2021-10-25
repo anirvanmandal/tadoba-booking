@@ -23,7 +23,7 @@ module.exports = (_, argv) => {
       popup: `${SRC_PATH}/js/popup`,
       'service-worker': `${SRC_PATH}/js/service-worker`,
       'content-script': `${SRC_PATH}/js/content-script`,
-      options: `${SRC_PATH}/scss/options.scss`
+      app: `${SRC_PATH}/scss/app.scss`
     },
 
     output: {
