@@ -1,29 +1,42 @@
 <html>
 <head>
 	<title>Popup for settings options</title>
+	<link rel="stylesheet" href="../assets/css/vendor.css">
 	<link rel="stylesheet" href="../assets/css/app.css">
 </head>
 <body>
-<h3>Tatkal Details</h3>
-<div class="zone-selection-row row">
-	<label for="zone-selector">Safari Zone</label>
-	<select id="zone-selector">
-		<option value="Moharli Gate [Core]">Moharli Gate [Core]</option>
-		<option value="Khutwanda Gate [Core]">Khutwanda Gate [Core]</option>
-		<option value="Navegaon Gate [Core]">Navegaon Gate [Core]</option>
-		<option value="Kolara Gate [Core]">Kolara Gate [Core]</option>
-		<option value="Pangadi Gate [Core]">Pangadi Gate [Core]</option>
-		<option value="Zari Gate [Core]">Zari Gate [Core]</option>
-	</select>
+<div class="grid-container popup-body-container">
+	<div class="grid-x popup-body-wrapper">
+		<h3 class="header">Current Tatkal Availability</h3>
+		<div class="loader">
+			<img src="../assets/images/spinner.svg" />
+		</div>
+		<div class="table-container hidden">
+			<table class="availability-table">
+				<tr id="row-1">
+					<th class="cell-1">Fetching</th>
+					<th class="cell-2">Fetching</th>
+					<th class="cell-3">Fetching</th>
+					<th class="cell-4">Fetching</th>
+				</tr>
+				<tr id="row-2">
+					<td class="cell-1">Fetching</td>
+					<td class="cell-2">Fetching</td>
+					<td class="cell-3">Fetching</td>
+					<td class="cell-4">Fetching</td>
+				</tr>
+				<tr id="row-3">
+					<td class="cell-1">Fetching</td>
+					<td class="cell-2">Fetching</td>
+					<td class="cell-3">Fetching</td>
+					<td class="cell-4">Fetching</td>
+				</tr>
+			</table>
+		</div>
+		<button type="button" id="open-booking" data-href="https://booking.mytadoba.org/safari/tatkal/" class="button">Open Tatkal Reservation</button>
+	</div>
 </div>
 
-<div class="shift-selection-row row">
-	<label for="shift-selector">Shift</label>
-	<select id="shift-selector">
-		<option value="Morning">Morning</option>
-		<option value="Evening">Evening</option>
-	</select>
-</div>
 </body>
 <script src="../popup.min.js"></script>
 </html>

@@ -1,35 +1,140 @@
 @import 'base';
 
 body {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding-top: 20px;
+  background-color: #f3f3f3;
+  padding-top: rem-calc(20px);
 }
 
-h1 {
-  font-size: 48px;
+.header-wrapper {
+  align-items: center;
+}
+
+.header {
+  color: $black;
+  text-transform: uppercase;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  flex: 2;
+}
+
+.tabs-panel {
+  min-height: 100%;
+
+  &.is-active {
+    border: 1px solid #cdcdcd;
+  }
+}
+
+.tabs.vertical {
+  padding-top: 40px;
+
+  .tabs-title-header {
+    color: #616161;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    text-transform: capitalize;
+  }
+
+  & > li {
+    &.is-active {
+      border: 1px solid #cdcdcd;
+      width: calc(100% + 2px);
+      border-right: 1px solid #ffffff;
+
+      & > a {
+        font-weight: bold;
+
+        &:focus {
+          background-color: $white;
+        }
+
+      }
+    }
+
+    & > a {
+      color: $dark-gray;
+      font-size: 0.75rem;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &:focus {
+        background-color: $light-gray;
+      }
+    }
+  }
+}
+
+.tab-header {
+  font-weight: lighter;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  border-bottom: 1px solid $medium-gray;
+}
+
+.tabs-container {
+  z-index: 2;
+}
+
+.tabs-content-container {
+  z-index: 1;
+}
+
+.passenger-details-wrapper {
+  padding: 20px 0;
+  border-bottom: 1px solid $medium-gray;
+
+  & > h5 {
+    color: $dark-gray;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $medium-gray;
+    margin-bottom: 20px;
+  }
 }
 
 .row {
   align-items: center;
   display: flex;
   flex-direction: row;
-  width: 300px;
+  width: 350px;
   justify-content: space-between;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-size: 14px;
 }
 
 select {
-  padding: 5px;
-  width: 150px;
+  background-color: $white;
+  padding: 7px;
+  width: 175px;
+  border-radius: 3px;
 }
 
 input[type='text'] {
-  padding: 5px;
-  width: 150px;
+  padding: 7px;
+  width: 175px;
 }
 
 .hidden {
   display: none;
+}
+
+.header-container {
+  margin-bottom: 20px;
+}
+
+.popup-body-container {
+  min-width: 500px;
+  margin: 0 auto;
+}
+
+.popup-body-wrapper {
+  align-items: center;
+  flex-direction: column;
+}
+
+.availability-table {
+  text-align: center;
 }

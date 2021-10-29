@@ -21,7 +21,8 @@
     "service_worker": "/app/service-worker.min.js"
   },
   "permissions": [
-    "storage"
+    "storage",
+    "notifications"
   ],
   "content_scripts": [
     {

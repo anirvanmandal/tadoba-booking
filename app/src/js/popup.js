@@ -1,42 +1,52 @@
-const zoneSelect = document.getElementById('zone-selector')
-const shiftSelect = document.getElementById('shift-selector')
+import Cheerio from 'cheerio'
+import $ from 'jquery'
 
-let tatkalInfo = {}
+let dom = ''
+let tatKalData = []
+const firstRow = []
+const secondRow = []
+const thirdRow = []
 
-const saveInfo = () => {
-  chrome.storage.sync.set({ tatkalInfo: tatkalInfo })
-}
-
-const setupPopup = () => {
-  zoneSelect.value = tatkalInfo.zone
-  shiftSelect.value = tatkalInfo.shift
-}
-
-const setupEventListeners = () => {
-  shiftSelect.addEventListener('change', async (e) => {
-    tatkalInfo.shift = e.currentTarget.value
-    saveInfo()
-  })
-
-  zoneSelect.addEventListener('change', async (e) => {
-    tatkalInfo.zone = e.currentTarget.value
-    saveInfo()
-  })
-}
-
-const fetchInitialData = () => {
-  chrome.storage.sync.get('tatkalInfo', (data) => {
-    if (data.tatkalInfo) {
-      tatkalInfo = data.tatkalInfo
+const setupTable = () => {
+  for (let i = 0; i < tatKalData.length; i++) {
+    const row = tatKalData[i]
+    for (let j = 0; j < row.length; j++) {
+      $(`#row-${i + 1} .cell-${j + 1}`).html(row[j])
     }
+  }
 
-    setupPopup()
+  $('.table-container').removeClass('hidden')
+  $('.loader').addClass('hidden')
+}
+
+const setupEvents = () => {
+  document.getElementById('open-booking').addEventListener('click', (e) => {
+    chrome.tabs.create({ url: $(e.currentTarget).data('href') })
+    return false
   })
 }
 
 const main = () => {
-  setupEventListeners()
-  fetchInitialData()
+  setupEvents()
+  $.ajax({
+    url: 'https://booking.mytadoba.org/safari/tatkal/',
+    success: (data) => {
+      dom = Cheerio.load(data)
+      const cells = dom('#av-grid tr th')
+      for (let i = 0; i < 12; i++) {
+        if (i < 4) {
+          firstRow.push(Cheerio.load(cells[i]).text())
+        } else if (i < 8) {
+          secondRow.push(Cheerio.load(cells[i]).text())
+        } else {
+          thirdRow.push(Cheerio.load(cells[i]).text())
+        }
+      }
+
+      tatKalData = [firstRow, secondRow, thirdRow]
+      setupTable()
+    }
+  })
 }
 
 main()

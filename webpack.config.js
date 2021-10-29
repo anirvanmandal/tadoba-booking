@@ -13,8 +13,7 @@ const PUBLIC_PATH = path.resolve('./app')
 
 module.exports = (_, argv) => {
   return {
-    mode: 'production',
-
+    mode: 'development',
     devtool: 'source-map',
     cache: true,
 
@@ -23,7 +22,8 @@ module.exports = (_, argv) => {
       popup: `${SRC_PATH}/js/popup`,
       'service-worker': `${SRC_PATH}/js/service-worker`,
       'content-script': `${SRC_PATH}/js/content-script`,
-      app: `${SRC_PATH}/scss/app.scss`
+      app: `${SRC_PATH}/scss/app.scss`,
+      vendor: `${SRC_PATH}/scss/vendor.scss`
     },
 
     output: {
@@ -36,7 +36,7 @@ module.exports = (_, argv) => {
       rules: [
         {
           test: /\.js$/,
-          exclude: /(node_modules)/,
+          include: path.resolve(__dirname, 'app/src/js'),
           use: [
             'babel-loader'
           ]
@@ -44,7 +44,7 @@ module.exports = (_, argv) => {
 
         {
           test: /\.scss$/,
-          exclude: /node_modules/,
+          include: path.resolve(__dirname, 'app/src/scss'),
           use: [
             MiniCssExtractPlugin.loader,
             'css-loader',
@@ -68,9 +68,10 @@ module.exports = (_, argv) => {
         },
         {
           test: /\.(woff|woff2|ttf|otf|png)([?]?.*)$/,
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]'
+          exclude: /(node_modules)/,
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/fonts/[name][ext]'
           }
         }
       ]

@@ -1,3 +1,9 @@
+/* global chrome */
+
+import { Tabs } from 'foundation-sites'
+import $ from 'jquery'
+
+let tatkalInfo = {}
 let passengerInfo = {}
 let activitiesInfo = {}
 
@@ -93,7 +99,14 @@ const buildPassengerInfo = () => {
 }
 
 const storeInfo = () => {
-  chrome.storage.sync.set({ passengerInfo: passengerInfo, activitiesInfo: activitiesInfo })
+  chrome.storage.sync.set({ tatkalInfo: tatkalInfo, passengerInfo: passengerInfo, activitiesInfo: activitiesInfo }, () => {
+    $('.settings-saved-callout').removeClass('hidden')
+    $('#save-options').html('Save')
+
+    setTimeout(() => {
+      $('.settings-saved-callout').addClass('hidden')
+    }, 2000)
+  })
 }
 
 const buildActivitiesInfo = () => {
@@ -101,7 +114,14 @@ const buildActivitiesInfo = () => {
   activitiesInfo.cameraCount = document.getElementById('camera-count').value
 }
 
+const buildTatkalInfo = () => {
+  tatkalInfo = {}
+  tatkalInfo.zone = document.getElementById('zone-selector').value
+  tatkalInfo.shift = document.getElementById('shift-selector').value
+}
+
 const saveInformation = () => {
+  buildTatkalInfo()
   buildPassengerInfo()
   buildActivitiesInfo()
   storeInfo()
@@ -114,6 +134,7 @@ const setupEventListeners = () => {
 
   document.getElementById('save-options').addEventListener('click', async (e) => {
     e.preventDefault()
+    e.currentTarget.innerHTML = 'Saving ...'
     saveInformation()
   })
 }
@@ -126,7 +147,13 @@ const setupCameraCount = (count) => {
   document.getElementById('camera-count').value = count
 }
 
+const setupTatkalDetails = () => {
+  document.getElementById('zone-selector').value = tatkalInfo.zone
+  document.getElementById('shift-selector').value = tatkalInfo.shift
+}
+
 const setupOptions = () => {
+  setupTatkalDetails(tatkalInfo)
   setupPassengerCount(passengerInfo.passengerCount)
   setupState(passengerInfo.state)
   setupCity(passengerInfo.city)
@@ -136,7 +163,11 @@ const setupOptions = () => {
 }
 
 const fetchInitialData = () => {
-  chrome.storage.sync.get(['passengerInfo', 'activitiesInfo'], (data) => {
+  chrome.storage.sync.get(['tatkalInfo', 'passengerInfo', 'activitiesInfo'], (data) => {
+    if (data.tatkalInfo) {
+      tatkalInfo = data.tatkalInfo
+    }
+
     if (data.passengerInfo) {
       passengerInfo = data.passengerInfo
     }
@@ -154,8 +185,13 @@ const initializePage = () => {
   fetchInitialData()
 }
 
+const initializeTabs = () => {
+  return new Tabs($('.js-vertical-tabs'), {})
+}
+
 const main = () => {
   initializePage()
+  initializeTabs()
 }
 
 main()
