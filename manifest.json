@@ -29,7 +29,8 @@
     {
       "matches": ["https://booking.mytadoba.org/*"],
       "css": [],
-      "js": ["/app/content-script.min.js"]
+      "js": ["/app/content-script.min.js"],
+      "run_at": "document_idle"
     }
   ]
 }
