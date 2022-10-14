@@ -31,7 +31,7 @@ const fetchData = () => {
         let sendNotification = false
         for (let i = 1; i <= 2; i++) {
           for (let j = 1; j <= 3; j++) {
-            if (parseInt(tatKalData[i][j]) >= 0) {
+            if (parseInt(tatKalData[i][j]) > 0) {
               sendNotification = true
               break
             }

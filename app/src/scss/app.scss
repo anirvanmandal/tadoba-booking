@@ -138,3 +138,23 @@ input[type='text'] {
 .availability-table {
   text-align: center;
 }
+
+.popup-footer {
+  align-items: center;
+  display: flex;
+  margin-bottom: 1rem;
+  justify-content: center;
+  width: 100%;
+
+  .begin-spacer {
+    flex: 1 0 15%;
+  }
+
+  .spacer {
+    flex: 1 0 auto;
+  }
+
+  button {
+    margin-bottom: 0;
+  }
+}

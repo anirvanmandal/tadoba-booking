@@ -24,6 +24,11 @@ const setupEvents = () => {
     chrome.tabs.create({ url: $(e.currentTarget).data('href') })
     return false
   })
+
+  document.getElementById('js-options-link').addEventListener('click', (e) => {
+    chrome.tabs.create({ url: '/app/views/options.html' })
+    return false
+  })
 }
 
 const main = () => {
