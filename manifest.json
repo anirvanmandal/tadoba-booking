@@ -1,6 +1,6 @@
 {
-  "name": "Tadoba Safari Booking",
-  "description": "Helps you save information for automates prefilling of information while booking Safari",
+  "name": "Tadoba Safari Booking Helper (TATR)",
+  "description": "Automates the Safari Booking process by prefilling stored information from the options & approving all the check boxes",
   "version": "0.0.1",
   "manifest_version": 3,
   "icons": {
@@ -14,7 +14,8 @@
     "default_icon": {
       "16": "/app/assets/images/logo_16.png",
       "32": "/app/assets/images/logo_32.png"
-    }
+    },
+    "default_title": "TATR Tatkal availability"
   },
   "options_page": "/app/views/options.html",
   "background": {
