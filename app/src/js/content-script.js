@@ -4,6 +4,8 @@ import * as dayjs from 'dayjs'
 
 const customerLoginLink = 'nmr-logged-out'
 
+const phoneID = 'input_8_1'
+
 const dateSelectorID = 'input_29_1'
 const zoneSelectorID = 'input_29_2'
 const shiftSelectorID = 'input_29_3'
@@ -89,6 +91,7 @@ const loginRegex = /\/login\//
 let tatkalInfo = {}
 let passengerInfo = {}
 let activitiesInfo = {}
+let loginInfo = {}
 
 const fetchTatkalInfo = () => {
   chrome.storage.sync.get('tatkalInfo', (data) => {
@@ -96,6 +99,15 @@ const fetchTatkalInfo = () => {
       tatkalInfo = data.tatkalInfo
       setZone()
       setShift()
+    }
+  })
+}
+
+const fetchLoginInfo = () => {
+  chrome.storage.sync.get('loginInfo', (data) => {
+    if (data.loginInfo) {
+      loginInfo = data.loginInfo
+      setPhone()
     }
   })
 }
@@ -119,6 +131,10 @@ const setZone = () => {
 
 const setShift = () => {
   setInputValue(tatkalInfo.shift, shiftSelectorID)
+}
+
+const setPhone = () => {
+  setInputValue(loginInfo.phone, phoneID)
 }
 
 const agreeTerms = () => {
@@ -193,6 +209,10 @@ const setPassengerInformation = () => {
   checkPassengerCheckboxes()
 }
 
+const setLoginPageDetails = () => {
+  fetchLoginInfo()
+}
+
 const setCameraCount = () => {
   setInputValue(activitiesInfo.cameraCount, cameraCountSelectID)
 }
@@ -242,8 +262,12 @@ const isReviewOrderPage = () => {
   return reviewOrderRegex.test(document.location.pathname)
 }
 
+const isLoginPage = () => {
+  return loginRegex.test(document.location.pathname)
+}
+
 const isNotLoginPage = () => {
-  return !loginRegex.test(document.location.pathname)
+  return !isLoginPage()
 }
 
 const isCustomerLoggedOut = () => {
@@ -251,12 +275,17 @@ const isCustomerLoggedOut = () => {
 }
 
 const main = () => {
+  console.log('here')
   if (isCustomerLoggedOut()) {
     if (isNotLoginPage()) {
       document.location.pathname = 'login'
     } else {
       console.log('Please login before proceeding')
     }
+  }
+
+  if (isLoginPage()) {
+    setLoginPageDetails()
   }
 
   if (isTatkalBookingsPage()) {

@@ -1,6 +1,6 @@
 {
   "name": "tadoba-booking",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A chrome plugin to speed up tadoba booking process, specially for tatkal booking",
   "scripts": {
     "watch": "webpack --watch",

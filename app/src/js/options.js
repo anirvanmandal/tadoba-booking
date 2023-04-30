@@ -6,6 +6,7 @@ import $ from 'jquery'
 let tatkalInfo = {}
 let passengerInfo = {}
 let activitiesInfo = {}
+let loginInfo = {}
 
 const setupPassengerCount = (count) => {
   if (count) {
@@ -99,7 +100,7 @@ const buildPassengerInfo = () => {
 }
 
 const storeInfo = () => {
-  chrome.storage.sync.set({ tatkalInfo: tatkalInfo, passengerInfo: passengerInfo, activitiesInfo: activitiesInfo }, () => {
+  chrome.storage.sync.set({ tatkalInfo: tatkalInfo, passengerInfo: passengerInfo, activitiesInfo: activitiesInfo, loginInfo: loginInfo }, () => {
     $('.settings-saved-callout').removeClass('hidden')
     $('#save-options').html('Save')
 
@@ -120,10 +121,16 @@ const buildTatkalInfo = () => {
   tatkalInfo.shift = document.getElementById('shift-selector').value
 }
 
+const buildLoginInfo = () => {
+  loginInfo = {}
+  loginInfo.phone = document.getElementById('phone').value
+}
+
 const saveInformation = () => {
   buildTatkalInfo()
   buildPassengerInfo()
   buildActivitiesInfo()
+  buildLoginInfo()
   storeInfo()
 }
 
@@ -152,6 +159,10 @@ const setupTatkalDetails = () => {
   document.getElementById('shift-selector').value = tatkalInfo.shift
 }
 
+const setupLoginDetails = () => {
+  document.getElementById('phone').value = loginInfo.phone
+}
+
 const setupOptions = () => {
   setupTatkalDetails(tatkalInfo)
   setupPassengerCount(passengerInfo.passengerCount)
@@ -160,10 +171,11 @@ const setupOptions = () => {
   setupPassengerWrappers(passengerInfo.passengerCount)
   setupPassengerDetails(passengerInfo.passengerCount)
   setupCameraCount(activitiesInfo.cameraCount)
+  setupLoginDetails(loginInfo)
 }
 
 const fetchInitialData = () => {
-  chrome.storage.sync.get(['tatkalInfo', 'passengerInfo', 'activitiesInfo'], (data) => {
+  chrome.storage.sync.get(['tatkalInfo', 'passengerInfo', 'activitiesInfo', 'loginInfo'], (data) => {
     if (data.tatkalInfo) {
       tatkalInfo = data.tatkalInfo
     }
@@ -174,6 +186,10 @@ const fetchInitialData = () => {
 
     if (data.activitiesInfo) {
       activitiesInfo = data.activitiesInfo
+    }
+
+    if (data.loginInfo) {
+      loginInfo = data.loginInfo
     }
 
     setupOptions()
